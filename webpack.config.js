@@ -6,37 +6,44 @@ const HTMLPlugin = require('html-webpack-plugin')
 
 const css = new ExtractTextPlugin('app-[contenthash:8].css')
 
-
 module.exports = {
   entry: {
     app: './src/app.js',
   },
   output: {
     path: `${__dirname}/dist`,
-    publicPath: '/',
+    // publicPath: '/',
     // chunkhash not working in dev-server
     filename: PROD ? '[name]-[chunkhash:8].js' : '[name].js',
   },
   module: {
     rules: [{
       test: /\.js$/,
-      exclude: /(node_modules|bower_components)/,
+      exclude: /(node_modules)/,
       use: ['babel-loader'],
     }, {
       test: /\.scss$/,
-      use: css.extract({
-        use: ['css-loader?sourceMap', {
-          loader: 'postcss-loader',
-          options: {
-            sourceMap: true,
-            plugins: [
-              require('autoprefixer')(),
-            ],
+      use: (() => {
+        const scssLoaders = [
+          'css-loader?sourceMap',
+          {
+            loader: 'postcss-loader',
+            options: {
+              sourceMap: true,
+              plugins: [
+                require('autoprefixer')(),
+              ],
+            },
           },
-        }, 'sass-loader?sourceMap'],
-      })
+          'sass-loader?sourceMap',
+        ]
+        return PROD
+          // css extract do not support hot reload
+          ? css.extract({ use: scssLoaders })
+          : ['style-loader', ...scssLoaders]
+      })(),
     }, {
-      test: /\.(png|jpg|gif)$/,
+      test: /\.(png|jpg|gif|mp4)$/,
       loader: 'url-loader',
       options: {
         limit: 10000,

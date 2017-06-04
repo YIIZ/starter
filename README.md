@@ -1,3 +1,6 @@
+# Webpack Ultimate Starter
+
+
 ## Features
 - Babel
 - SCSS
@@ -19,3 +22,15 @@
 
 ### Trivial
 - SVG with attrs including
+
+
+## Ins
+
+### Component based developing?
+stage-draw.component.html
+html + style + script
+direct event binding
+
+include other component
+
+

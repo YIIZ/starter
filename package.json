@@ -21,11 +21,14 @@
     "raw-loader": "latest",
     "rimraf": "latest",
     "sass-loader": "latest",
+    "style-loader": "latest",
     "url-loader": "latest",
     "webpack": "latest",
     "webpack-dev-server": "latest"
   },
   "dependencies": {
+    "bootstrap": "^4.0.0-alpha.6",
+    "milligram": "^1.3.0"
   },
   "browserslist": [
     "> 1%",
