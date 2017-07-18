@@ -19,6 +19,7 @@
 - BuckleScript
 - Imagemin https://github.com/tcoopman/image-webpack-loader
 - Fontmin http://ecomfe.github.io/fontmin
+- https://github.com/zhouwenbin/postcss-animation
 
 ### Trivial
 - SVG with attrs including
