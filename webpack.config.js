@@ -7,8 +7,9 @@ const HTMLPlugin = require('html-webpack-plugin')
 const css = new ExtractTextPlugin('app-[contenthash:8].css')
 
 module.exports = {
+  context: `${__dirname}/src`,
   entry: {
-    app: './src/app.js',
+    app: 'app.js',
   },
   output: {
     path: `${__dirname}/dist`,
@@ -47,7 +48,7 @@ module.exports = {
       loader: 'url-loader',
       options: {
         limit: 10000,
-        name: '[name]-[hash:8].[ext]',
+        name: '[path][name]-[hash:8].[ext]',
       },
     }, {
       // for inline svg in template
@@ -58,7 +59,7 @@ module.exports = {
   plugins: [
     // process.env.NODE_ENV is defined by -p
     new HTMLPlugin({
-      template: 'src/index.html.ejs',
+      template: 'index.html.ejs',
       // https://github.com/kangax/html-minifier#options-quick-reference
       minify: !PROD ? false : {
         collapseWhitespace: true,
