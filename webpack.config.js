@@ -20,7 +20,8 @@ module.exports = {
   module: {
     rules: [{
       test: /\.js$/,
-      exclude: /(node_modules)/,
+      // exclude: /(node_modules)/,
+      exclude: /node_modules(?!(\/|\\)lib)/,
       use: ['babel-loader'],
     }, {
       test: /\.scss$/,
@@ -44,7 +45,7 @@ module.exports = {
           : ['style-loader', ...scssLoaders]
       })(),
     }, {
-      test: /\.(png|jpg|gif|mp4)$/,
+      test: /\.(png|jpg|gif|mp4|m4a)$/,
       loader: 'url-loader',
       options: {
         limit: 10000,
