@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "bootstrap": "^4.0.0-beta",
+    "lib": "https://bitbucket.org/teambun/lib.git",
     "milligram": "^1.3.0"
   },
   "browserslist": [
