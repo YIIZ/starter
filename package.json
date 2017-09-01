@@ -28,8 +28,7 @@
   },
   "dependencies": {
     "bootstrap": "^4.0.0-beta",
-    "milligram": "^1.3.0",
-    "lib": "file:../lib#v0.0.1",
+    "milligram": "^1.3.0"
   },
   "browserslist": [
     "> 1%",

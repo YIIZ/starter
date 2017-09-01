@@ -9,7 +9,7 @@ const css = new ExtractTextPlugin('app-[contenthash:8].css')
 module.exports = {
   context: `${__dirname}/src`,
   entry: {
-    app: 'app.js',
+    app: './app.js',
   },
   output: {
     path: `${__dirname}/dist`,
