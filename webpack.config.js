@@ -13,7 +13,7 @@ module.exports = {
   },
   output: {
     path: `${__dirname}/dist`,
-    // publicPath: '/',
+    publicPath: `${process.env.PUBLIC || ''}`,
     // chunkhash not working in dev-server
     filename: PROD ? '[name]-[chunkhash:8].js' : '[name].js',
   },
@@ -49,7 +49,7 @@ module.exports = {
       loader: 'url-loader',
       options: {
         limit: 10000,
-        name: '[path][name]-[hash:8].[ext]',
+        name: '[name]-[hash:8].[ext]',
       },
     }, {
       // for inline svg in template
