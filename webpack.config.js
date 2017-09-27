@@ -8,6 +8,9 @@ const css = new ExtractTextPlugin('app-[contenthash:8].css')
 
 module.exports = {
   context: `${__dirname}/src`,
+  resolve: {
+    modules: ['src', 'node_modules'],
+  },
   entry: {
     app: './app.js',
   },
@@ -20,7 +23,7 @@ module.exports = {
   module: {
     rules: [{
       test: /\.js$/,
-      // exclude: /(node_modules)/,
+      // exclude: /node_modules/,
       exclude: /node_modules(?!(\/|\\)lib)/,
       use: ['babel-loader'],
     }, {
