@@ -24,8 +24,17 @@ module.exports = {
     rules: [{
       test: /\.js$/,
       // exclude: /node_modules/,
-      exclude: /node_modules(?!(\/|\\)lib)/,
-      use: ['babel-loader'],
+      exclude: /node_modules\/(?!lib|bootstrap)/,
+      // use: ['babel-loader'],
+      use: {
+        loader: 'babel-loader',
+        options: {
+          // ignore babelrc in node_modules
+          babelrc: false,
+          presets: [ ["env", { modules: false }] ],
+          plugins: ["transform-runtime"],
+        },
+      },
     }, {
       test: /\.scss$/,
       use: (() => {
