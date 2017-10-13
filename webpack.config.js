@@ -66,7 +66,24 @@ module.exports = {
     }, {
       // for inline svg in template
       test: /\.svg$/,
-      use: ['raw-loader'],
+      use: [{
+        loader: 'raw-loader'
+      }, {
+        loader: 'svgo-loader',
+        options: {
+          plugins: [
+            { removeXMLNS: true },
+            { removeTitle: true },
+            // TODO no need this
+            // @see https://github.com/svg/svgo/pull/798
+            { removeDesc: { removeAny: true } },
+            { transformsWithOnePath: true },
+            // { removeAttrs: { attrs: 'fill-rule' } },
+            // { removeDimensions: true },
+            // addClassesToSVGElement
+          ],
+        },
+      }],
     }],
   },
   plugins: [

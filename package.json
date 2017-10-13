@@ -25,6 +25,7 @@
     "rimraf": "latest",
     "sass-loader": "latest",
     "style-loader": "latest",
+    "svgo-loader": "latest",
     "url-loader": "latest",
     "webpack": "latest",
     "webpack-dev-server": "latest"
