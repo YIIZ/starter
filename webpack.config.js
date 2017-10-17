@@ -87,7 +87,11 @@ module.exports = {
     }],
   },
   plugins: [
-    // process.env.NODE_ENV is defined by -p
+    new webpack.DefinePlugin({
+      'process.env': JSON.stringify(process.env),
+      // TODO by env?
+      'process.env.NODE_ENV': JSON.stringify(PROD ? 'production' : 'development'),
+    }),
     new HTMLPlugin({
       template: 'index.html.ejs',
       // https://github.com/kangax/html-minifier#options-quick-reference
