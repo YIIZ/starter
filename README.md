@@ -10,6 +10,12 @@
 
 
 ## TODO
+- More powerful template engine
+  需求：simple/precompile/inheritance/include with params(component)(最好通过webpack实现)/webpack integrated(`require(svg)`)
+  - ~~[pug](https://github.com/pugjs/pug-loader)~~ 无 include 参数、haml 语法
+  - TODO [nunjucks](https://github.com/at0g/nunjucks-loader)
+  - TODO [aui](https://aui.github.io/art-template/webpack/index.html#Examples)
+  - TODO [dust](https://github.com/avaly/dust-loader)
 - sourcemap
 - HMR
 - sprite http://kyon-df.com/2016/03/16/webpack_auto_sprites/
