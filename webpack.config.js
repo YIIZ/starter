@@ -31,8 +31,8 @@ module.exports = {
         options: {
           // ignore babelrc in node_modules
           babelrc: false,
-          presets: [ ["env", { modules: false }] ],
-          plugins: ["transform-runtime"],
+          presets: [ ['env', { modules: false }] ],
+          plugins: ['transform-runtime'],
         },
       },
     }, {
