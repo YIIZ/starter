@@ -1,6 +1,13 @@
 # Webpack Ultimate Starter
 
 
+## Usage
+
+```
+curl https://bitbucket.org/teambun/starter/get/master.tar.gz | tar xvz
+```
+
+
 ## Features
 - Babel
 - SCSS
