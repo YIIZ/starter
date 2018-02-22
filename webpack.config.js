@@ -1,8 +1,15 @@
+// env
+require('dotenv').config({ path: `${__dirname}/${process.env.ENV || '.env'}` })
 const PROD = process.argv.includes('-p')
 
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HTMLPlugin = require('html-webpack-plugin')
+
+const Jarvis = require('webpack-jarvis')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+
+const sassFunctions = require('lib/scss/functions')
 
 const css = new ExtractTextPlugin('app-[contenthash:8].css')
 
@@ -22,7 +29,7 @@ module.exports = {
   },
   module: {
     rules: [{
-      test: /\.js$/,
+      test: /\.(?:svelte|js)$/,
       // exclude: /node_modules/,
       exclude: /node_modules\/(?!lib|bootstrap)/,
       // use: ['babel-loader'],
@@ -36,28 +43,46 @@ module.exports = {
         },
       },
     }, {
-      test: /\.scss$/,
+      // https://github.com/sveltejs/template-webpack/blob/master/webpack.config.js
+      test: /\.svelte$/,
+      use: {
+        loader: 'svelte-loader',
+        options: {
+          emitCss: true,
+          store: true,
+          cascade: true,
+        },
+      },
+    }, {
+      test: /\.s?css$/,
       use: (() => {
-        const scssLoaders = [
-          'css-loader?sourceMap',
-          {
-            loader: 'postcss-loader',
-            options: {
-              sourceMap: true,
-              plugins: [
-                require('autoprefixer')(),
-              ],
-            },
+        const scssLoaders = [{
+          loader: 'css-loader',
+          options: {
+            sourceMap: true,
           },
-          'sass-loader?sourceMap',
-        ]
+        }, {
+          loader: 'postcss-loader',
+          options: {
+            sourceMap: true,
+            plugins: [
+              require('autoprefixer')(),
+            ],
+          },
+        }, {
+          loader: 'sass-loader',
+          options: {
+            sourceMap: true,
+            functions: sassFunctions,
+          },
+        }]
         return PROD
           // css extract do not support hot reload
           ? css.extract({ use: scssLoaders })
           : ['style-loader', ...scssLoaders]
       })(),
     }, {
-      test: /\.(png|jpg|gif|mp4|m4a)$/,
+      test: /\.(png|jpg|gif|mp4|m4a|obj)$/,
       loader: 'url-loader',
       options: {
         limit: 10000,
@@ -89,8 +114,9 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': JSON.stringify(process.env),
-      // TODO by env?
-      'process.env.NODE_ENV': JSON.stringify(PROD ? 'production' : 'development'),
+    }),
+    new webpack.ProvidePlugin({
+      fetch: 'imports-loader?Promise=babel-runtime/core-js/promise,self=>{fetch:window.fetch}!exports-loader?self.fetch!whatwg-fetch',
     }),
     new HTMLPlugin({
       template: 'index.html.ejs',
@@ -101,5 +127,7 @@ module.exports = {
       },
     }),
     css,
+    // new BundleAnalyzerPlugin(),
+    // new Jarvis(),
   ],
 }
