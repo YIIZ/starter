@@ -2,40 +2,38 @@
   "private": true,
   "scripts": {
     "start": "webpack-dev-server -d --devtool source-map --hot --history-api-fallback",
-    "build": "rimraf dist/* & webpack -p --progress --hide-modules",
-    "buildprod": "env ENV=.envprod yarn build"
+    "build": "webpack -p --progress --hide-modules",
+    "buildc": "rimraf dist/* & yarn build"
   },
   "devDependencies": {
     "autoprefixer": "latest",
     "babel-core": "latest",
     "babel-loader": "latest",
+    "babel-plugin-transform-class-properties": "latest",
+    "babel-plugin-transform-functional-jsx": "latest",
+    "babel-plugin-transform-object-rest-spread": "latest",
     "babel-plugin-transform-runtime": "latest",
     "babel-preset-env": "latest",
     "css-loader": "latest",
-    "dotenv": "latest",
     "exports-loader": "latest",
     "expose-loader": "latest",
-    "extract-text-webpack-plugin": "latest",
     "file-loader": "latest",
     "html-loader": "latest",
     "html-webpack-plugin": "latest",
     "imports-loader": "latest",
+    "mini-css-extract-plugin": "latest",
     "node-sass": "latest",
     "postcss-loader": "latest",
     "raw-loader": "latest",
     "rimraf": "^2.6.2",
     "sass-loader": "latest",
     "style-loader": "latest",
-    "svelte": "latest",
-    "svelte-loader": "latest",
-    "svelte-transitions": "latest",
     "svgo": "latest",
     "svgo-loader": "latest",
     "url-loader": "latest",
     "webpack": "latest",
-    "webpack-bundle-analyzer": "latest",
-    "webpack-dev-server": "latest",
-    "webpack-jarvis": "latest"
+    "webpack-cli": "latest",
+    "webpack-dev-server": "latest"
   },
   "dependencies": {
     "bootstrap": "^4.0.0",
@@ -45,5 +43,9 @@
   "browserslist": [
     "> 1%",
     "last 2 versions"
-  ]
+  ],
+  "optionalDependencies": {
+    "webpack-bundle-analyzer": "latest",
+    "webpack-jarvis": "latest"
+  }
 }

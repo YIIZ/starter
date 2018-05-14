@@ -1,17 +1,9 @@
-// env
-require('dotenv').config({ path: `${__dirname}/${process.env.ENV || '.env'}` })
 const PROD = process.argv.includes('-p')
 
 const webpack = require('webpack')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HTMLPlugin = require('html-webpack-plugin')
-
-const Jarvis = require('webpack-jarvis')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-
 const sassFunctions = require('lib/scss/functions')
-
-const css = new ExtractTextPlugin('app-[contenthash:8].css')
 
 module.exports = {
   context: `${__dirname}/src`,
@@ -29,7 +21,7 @@ module.exports = {
   },
   module: {
     rules: [{
-      test: /\.(?:svelte|js)$/,
+      test: /\.js$/,
       // exclude: /node_modules/,
       exclude: /node_modules\/(?!lib|bootstrap)/,
       // use: ['babel-loader'],
@@ -39,50 +31,41 @@ module.exports = {
           // ignore babelrc in node_modules
           babelrc: false,
           presets: [ ['env', { modules: false }] ],
-          plugins: ['transform-runtime'],
-        },
-      },
-    }, {
-      // https://github.com/sveltejs/template-webpack/blob/master/webpack.config.js
-      test: /\.svelte$/,
-      use: {
-        loader: 'svelte-loader',
-        options: {
-          emitCss: true,
-          store: true,
-          cascade: true,
+          plugins: [
+            'transform-runtime',
+            'transform-object-rest-spread',
+            ['transform-class-properties', { spec: true }],
+            // 'transform-functional-jsx',
+          ],
         },
       },
     }, {
       test: /\.s?css$/,
-      use: (() => {
-        const scssLoaders = [{
-          loader: 'css-loader',
-          options: {
-            sourceMap: true,
-          },
-        }, {
-          loader: 'postcss-loader',
-          options: {
-            sourceMap: true,
-            plugins: [
-              require('autoprefixer')(),
-            ],
-          },
-        }, {
-          loader: 'sass-loader',
-          options: {
-            sourceMap: true,
-            functions: sassFunctions,
-          },
-        }]
-        return PROD
-          // css extract do not support hot reload
-          ? css.extract({ use: scssLoaders })
-          : ['style-loader', ...scssLoaders]
-      })(),
+      use: [{
+        // css extract do not support hot reload
+        loader: PROD ? MiniCssExtractPlugin.loader : 'style-loader',
+      }, {
+        loader: 'css-loader',
+        options: {
+          sourceMap: true,
+        },
+      }, {
+        loader: 'postcss-loader',
+        options: {
+          sourceMap: true,
+          plugins: [
+            require('autoprefixer')(),
+          ],
+        },
+      }, {
+        loader: 'sass-loader',
+        options: {
+          sourceMap: true,
+          functions: sassFunctions,
+        },
+      }],
     }, {
-      test: /\.(png|jpg|gif|mp4|m4a|obj)$/,
+      test: /\.(png|jpg|gif|mp4|m4a)$/,
       loader: 'url-loader',
       options: {
         limit: 10000,
@@ -118,6 +101,9 @@ module.exports = {
     new webpack.ProvidePlugin({
       fetch: 'imports-loader?Promise=babel-runtime/core-js/promise,self=>{fetch:window.fetch}!exports-loader?self.fetch!whatwg-fetch',
     }),
+    new MiniCssExtractPlugin({
+      filename: '[name]-[contenthash:8].css',
+    }),
     new HTMLPlugin({
       template: 'index.html.ejs',
       // https://github.com/kangax/html-minifier#options-quick-reference
@@ -126,8 +112,7 @@ module.exports = {
         removeComments: true,
       },
     }),
-    css,
-    // new BundleAnalyzerPlugin(),
-    // new Jarvis(),
+    // new (require('webpack-bundle-analyzer')).BundleAnalyzerPlugin(),
+    // new (require('webpack-jarvis'))(),
   ],
 }
