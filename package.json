@@ -3,7 +3,9 @@
   "scripts": {
     "start": "webpack-dev-server -d --devtool source-map --hot --history-api-fallback",
     "build": "webpack -p --progress --hide-modules",
-    "buildc": "rimraf dist/* & yarn build"
+    "buildc": "rimraf dist/* & yarn build",
+    "buildstage": "env $(cat .env/development | grep -v ^# | xargs) yarn buildc",
+    "buildrelease": "env $(cat .env/production | grep -v ^# | xargs) yarn buildc"
   },
   "devDependencies": {
     "autoprefixer": "latest",
