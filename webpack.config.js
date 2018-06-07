@@ -43,6 +43,8 @@ module.exports = {
       test: /\.s?css$/,
       use: [{
         // css extract do not support hot reload
+        // NOTE if use style-loader on production
+        // disable sourceMap for css-loader to clear local info
         loader: PROD ? MiniCssExtractPlugin.loader : 'style-loader',
       }, {
         loader: 'css-loader',
@@ -116,3 +118,10 @@ module.exports = {
     // new (require('webpack-jarvis'))(),
   ],
 }
+
+// default disable comments for `webpack -p`
+// https://github.com/webpack-contrib/uglifyjs-webpack-plugin/blob/master/src/index.js#L46
+Object.defineProperty(require('uglifyjs-webpack-plugin').prototype, 'options', {
+  get() { return this._options },
+  set(o) { o.uglifyOptions.output.comments = false; this._options = o },
+})
