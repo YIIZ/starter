@@ -30,12 +30,17 @@ module.exports = {
         options: {
           // ignore babelrc in node_modules
           babelrc: false,
-          presets: [ ['env', { modules: false }] ],
+          presets: [ ['@babel/preset-env', { modules: false }] ],
           plugins: [
-            'transform-runtime',
-            'transform-object-rest-spread',
-            ['transform-class-properties', { spec: true }],
-            // 'transform-functional-jsx',
+            '@babel/plugin-transform-runtime',
+            '@babel/plugin-syntax-object-rest-spread',
+            '@babel/plugin-proposal-class-properties',
+            // '@babel/plugin-proposal-decorators',
+            '@babel/plugin-proposal-do-expressions',
+            '@babel/plugin-proposal-logical-assignment-operators',
+            '@babel/plugin-proposal-nullish-coalescing-operator',
+            '@babel/plugin-proposal-pipeline-operator',
+            // 'babel-plugin-transform-functional-jsx',
           ],
         },
       },
