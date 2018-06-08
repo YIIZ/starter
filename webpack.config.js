@@ -79,26 +79,9 @@ module.exports = {
         name: '[name]-[hash:8].[ext]',
       },
     }, {
-      // for inline svg in template
+      // for inline svg in template, opt svg by hand(ImageOptim)
       test: /\.svg$/,
-      use: [{
-        loader: 'raw-loader'
-      }, {
-        loader: 'svgo-loader',
-        options: {
-          plugins: [
-            { removeXMLNS: true },
-            { removeTitle: true },
-            // TODO no need this
-            // @see https://github.com/svg/svgo/pull/798
-            { removeDesc: { removeAny: true } },
-            { transformsWithOnePath: true },
-            // { removeAttrs: { attrs: 'fill-rule' } },
-            // { removeDimensions: true },
-            // addClassesToSVGElement
-          ],
-        },
-      }],
+      loader: 'raw-loader',
     }],
   },
   plugins: [

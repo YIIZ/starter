@@ -23,7 +23,6 @@
     "babel-loader": "^8.0.0-beta.3",
     "css-loader": "latest",
     "exports-loader": "latest",
-    "expose-loader": "latest",
     "file-loader": "latest",
     "html-loader": "latest",
     "html-webpack-plugin": "latest",
@@ -35,17 +34,15 @@
     "rimraf": "^2.6.2",
     "sass-loader": "latest",
     "style-loader": "latest",
-    "svgo": "latest",
-    "svgo-loader": "latest",
     "url-loader": "latest",
     "webpack": "latest",
     "webpack-cli": "latest",
     "webpack-dev-server": "latest"
   },
   "dependencies": {
-    "bootstrap": "^4.0.0",
+    "bootstrap": "^4.1.1",
     "lib": "https://bitbucket.org/teambun/lib.git#master",
-    "whatwg-fetch": "^2.0.3"
+    "whatwg-fetch": "^2.0.4"
   },
   "browserslist": [
     "> 1%",
