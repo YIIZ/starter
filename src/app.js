@@ -1,6 +1,10 @@
 import './app.scss'
 import { Deferred } from 'lib'
 
+import { img, param } from '!!val-loader?b=3!./foo.js.val'
+
+console.log(img, param)
+
 class Foo {}
 Array.every([], () => true)
 

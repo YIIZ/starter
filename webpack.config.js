@@ -8,6 +8,7 @@ const sassFunctions = require('lib/scss/functions')
 module.exports = {
   context: `${__dirname}/src`,
   resolve: {
+    symlinks: false,
     modules: ['src', 'node_modules'],
   },
   entry: {
@@ -82,6 +83,9 @@ module.exports = {
       // for inline svg in template, opt svg by hand(ImageOptim)
       test: /\.svg$/,
       loader: 'raw-loader',
+    }, {
+      test: /\.val$/,
+      loader: 'val-loader',
     }],
   },
   plugins: [

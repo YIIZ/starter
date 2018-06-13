@@ -1,0 +1,12 @@
+module.exports = ({ b }) => {
+  return {
+    // code: `export default 'hello'`
+    code: `
+import image from './foo.png'
+export const img = image
+export const param = ${b}
+// export * from './bar.js'
+`
+    // code: `module.exports = 'hello'`
+  }
+}
