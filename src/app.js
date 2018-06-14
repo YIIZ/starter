@@ -41,3 +41,4 @@ const tenMoves = listen(document.body, 'mousemove')
 
 tenMoves.subscribe({ next({ x }) { console.log(`move x:${x}`) } })
 
+console.log('success')

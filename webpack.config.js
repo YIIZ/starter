@@ -1,11 +1,9 @@
-const PROD = process.argv.includes('-p')
-
 const webpack = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HTMLPlugin = require('html-webpack-plugin')
 const sassFunctions = require('lib/scss/functions')
 
-module.exports = {
+module.exports = (env, { mode, PROD = (mode ==='production') }) => ({
   context: `${__dirname}/src`,
   resolve: {
     symlinks: false,
@@ -33,14 +31,15 @@ module.exports = {
           babelrc: false,
           presets: [ ['@babel/preset-env', { modules: false }] ],
           plugins: [
-            '@babel/plugin-transform-runtime',
-            '@babel/plugin-syntax-object-rest-spread',
+            ['@babel/plugin-transform-runtime', { corejs: 2, useESModules: true }],
             '@babel/plugin-proposal-class-properties',
-            // '@babel/plugin-proposal-decorators',
+            ['@babel/plugin-proposal-decorators', { decoratorsBeforeExport: false }],
             '@babel/plugin-proposal-do-expressions',
             '@babel/plugin-proposal-logical-assignment-operators',
             '@babel/plugin-proposal-nullish-coalescing-operator',
-            '@babel/plugin-proposal-pipeline-operator',
+            '@babel/plugin-proposal-optional-chaining',
+            // TODO wait https://github.com/tc39/proposal-partial-application
+            ['@babel/plugin-proposal-pipeline-operator', { proposal: 'minimal' }],
             // 'babel-plugin-transform-functional-jsx',
           ],
         },
@@ -89,11 +88,15 @@ module.exports = {
     }],
   },
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env': JSON.stringify(process.env),
-    }),
     new webpack.ProvidePlugin({
-      fetch: 'imports-loader?Promise=babel-runtime/core-js/promise,self=>{fetch:window.fetch}!exports-loader?self.fetch!whatwg-fetch',
+      fetch: ['imports-loader?Promise=core-js/library/fn/promise!whatwg-fetch', 'fetch'],
+      // fake instance methods and proposals in transform runtime is removed, add them by manual
+      // https://github.com/babel/babel/pull/8547/files
+      'Array.every': 'core-js/library/fn/array/every',
+      'Array.find': 'core-js/library/fn/array/find',
+      'String.padStart': 'core-js/library/fn/string/padStart',
+      'String.repeat': 'core-js/library/fn/string/repeat',
+      'Observable': 'core-js/library/fn/observable',
     }),
     new MiniCssExtractPlugin({
       filename: '[name]-[contenthash:8].css',
@@ -101,15 +104,15 @@ module.exports = {
     new HTMLPlugin({
       template: 'index.html.ejs',
       // https://github.com/kangax/html-minifier#options-quick-reference
-      minify: !PROD ? false : {
-        collapseWhitespace: true,
-        removeComments: true,
+      minify: {
+        collapseWhitespace: PROD,
+        removeComments: PROD,
       },
     }),
     // new (require('webpack-bundle-analyzer')).BundleAnalyzerPlugin(),
     // new (require('webpack-jarvis'))(),
   ],
-}
+})
 
 // default disable comments for `webpack -p`
 // https://github.com/webpack-contrib/uglifyjs-webpack-plugin/blob/master/src/index.js#L46
