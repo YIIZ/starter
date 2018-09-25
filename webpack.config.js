@@ -22,7 +22,7 @@ module.exports = (env, { mode, PROD = (mode ==='production') }) => ({
     rules: [{
       test: /\.js$/,
       // exclude: /node_modules/,
-      exclude: /node_modules\/(?!lib|bootstrap)/,
+      exclude: /node_modules\/(?!lib|whatwg-fetch|bootstrap)/,
       // use: ['babel-loader'],
       use: {
         loader: 'babel-loader',
@@ -89,7 +89,7 @@ module.exports = (env, { mode, PROD = (mode ==='production') }) => ({
   },
   plugins: [
     new webpack.ProvidePlugin({
-      fetch: ['imports-loader?Promise=core-js/library/fn/promise!whatwg-fetch', 'fetch'],
+      fetch: ['whatwg-fetch', 'fetch'],
       // fake instance methods and proposals in transform runtime is removed, add them by manual
       // https://github.com/babel/babel/pull/8547/files
       'Array.every': 'core-js/library/fn/array/every',
