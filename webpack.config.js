@@ -1,3 +1,4 @@
+const path = require('path')
 const webpack = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HTMLPlugin = require('html-webpack-plugin')
@@ -21,9 +22,12 @@ module.exports = (env, { mode, PROD = (mode ==='production') }) => ({
   module: {
     rules: [{
       test: /\.js$/,
-      // exclude: /node_modules/,
-      exclude: /node_modules\/(?!lib|whatwg-fetch|bootstrap)/,
-      // use: ['babel-loader'],
+      include: [
+        path.resolve(__dirname, 'src'),
+        path.resolve(__dirname, 'node_modules/lib'),
+        path.resolve(__dirname, 'node_modules/whatwg-fetch'),
+        path.resolve(__dirname, 'node_modules/bootstrap'),
+      ],
       use: {
         loader: 'babel-loader',
         options: {
