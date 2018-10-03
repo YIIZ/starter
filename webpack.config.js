@@ -1,6 +1,5 @@
 const path = require('path')
 const webpack = require('webpack')
-const HTMLPlugin = require('html-webpack-plugin')
 
 module.exports = (env, { mode, PROD = (mode ==='production') }) => ({
   context: `${__dirname}/src`,
@@ -23,8 +22,7 @@ module.exports = (env, { mode, PROD = (mode ==='production') }) => ({
       test: /\.js$/,
       include: [
         path.resolve(__dirname, 'src'),
-        path.resolve(__dirname, 'node_modules/whatwg-fetch'),
-        path.resolve(__dirname, 'node_modules/black'),
+        // path.resolve(__dirname, 'node_modules/black'),
       ],
       use: {
         loader: 'babel-loader',
@@ -64,7 +62,6 @@ module.exports = (env, { mode, PROD = (mode ==='production') }) => ({
       'process.env': JSON.stringify(process.env),
     }),
     new webpack.ProvidePlugin({
-      fetch: ['whatwg-fetch', 'fetch'],
       // fake instance methods and proposals in transform runtime is removed, add them by manual
       // https://github.com/babel/babel/pull/8547/files
       'Array.every': 'core-js/library/fn/array/every',
@@ -73,15 +70,7 @@ module.exports = (env, { mode, PROD = (mode ==='production') }) => ({
       'String.repeat': 'core-js/library/fn/string/repeat',
       'Observable': 'core-js/library/fn/observable',
     }),
-    new HTMLPlugin({
-      template: 'index.html.ejs',
-      // https://github.com/kangax/html-minifier#options-quick-reference
-      minify: {
-        collapseWhitespace: PROD,
-        removeComments: PROD,
-      },
-    }),
-    // new (require('webpack-bundle-analyzer')).BundleAnalyzerPlugin({ openAnalyzer: false }),
+    // new (require('webpack-bundle-analyzer')).BundleAnalyzerPlugin(),
     // new (require('webpack-jarvis'))(),
   ],
 })

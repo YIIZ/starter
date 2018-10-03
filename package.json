@@ -26,7 +26,6 @@
     "babel-plugin-transform-functional-jsx": "latest",
     "exports-loader": "latest",
     "file-loader": "latest",
-    "html-webpack-plugin": "latest",
     "imports-loader": "latest",
     "raw-loader": "latest",
     "rimraf": "latest",
@@ -37,9 +36,9 @@
     "webpack-dev-server": "latest"
   },
   "dependencies": {
-    "black": "https://github.com/MassiveHeights/Black.git#v0.6.x-dev",
     "lib": "https://bitbucket.org/teambun/lib.git#master",
-    "whatwg-fetch": "^3.0.0"
+    "pixi.js": "^4.8.2",
+    "weapp-adapter": "https://bitbucket.org/teambun/weapp-adapter#master"
   },
   "browserslist": [
     "> 1%",
