@@ -1,4 +1,3 @@
-import './app.scss'
 import { Deferred } from 'lib'
 
 import { img, param } from '!!val-loader?b=3!./foo.js.val'

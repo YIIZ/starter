@@ -1,6 +1,5 @@
 const path = require('path')
 const webpack = require('webpack')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HTMLPlugin = require('html-webpack-plugin')
 
 module.exports = (env, { mode, PROD = (mode ==='production') }) => ({
@@ -24,9 +23,8 @@ module.exports = (env, { mode, PROD = (mode ==='production') }) => ({
       test: /\.js$/,
       include: [
         path.resolve(__dirname, 'src'),
-        path.resolve(__dirname, 'node_modules/lib'),
         path.resolve(__dirname, 'node_modules/whatwg-fetch'),
-        path.resolve(__dirname, 'node_modules/bootstrap'),
+        path.resolve(__dirname, 'node_modules/black'),
       ],
       use: {
         loader: 'babel-loader',
@@ -50,44 +48,12 @@ module.exports = (env, { mode, PROD = (mode ==='production') }) => ({
         },
       },
     }, {
-      test: /\.s?css$/,
-      use: [{
-        // css extract do not support hot reload
-        // NOTE if use style-loader on production
-        // disable sourceMap for css-loader to clear local info
-        loader: PROD ? MiniCssExtractPlugin.loader : 'style-loader',
-      }, {
-        loader: 'css-loader',
-        options: {
-          sourceMap: true,
-        },
-      }, {
-        loader: 'postcss-loader',
-        options: {
-          sourceMap: true,
-          plugins: [
-            require('autoprefixer')(),
-          ],
-        },
-      }, {
-        loader: 'sass-loader',
-        options: {
-          implementation: require('sass'),
-          sourceMap: true,
-        },
-      }],
-    }, {
-      loader: 'url-loader',
       test: path.resolve(__dirname, 'res'),
       type: 'javascript/auto', // fix json type
+      loader: 'file-loader',
       options: {
-        limit: 10000,
         name: '[name]-[hash:8].[ext]',
       },
-    }, {
-      // for inline svg in template, opt svg by hand(ImageOptim)
-      test: /\.svg$/,
-      loader: 'raw-loader',
     }, {
       test: /\.val$/,
       loader: 'val-loader',
@@ -99,9 +65,6 @@ module.exports = (env, { mode, PROD = (mode ==='production') }) => ({
     }),
     new webpack.ProvidePlugin({
       fetch: ['whatwg-fetch', 'fetch'],
-    }),
-    new MiniCssExtractPlugin({
-      filename: '[name]-[contenthash:8].css',
     }),
     new HTMLPlugin({
       template: 'index.html.ejs',
