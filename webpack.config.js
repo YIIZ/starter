@@ -92,6 +92,9 @@ module.exports = (env, { mode, PROD = (mode ==='production') }) => ({
     }],
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': JSON.stringify(process.env),
+    }),
     new webpack.ProvidePlugin({
       fetch: ['whatwg-fetch', 'fetch'],
       // fake instance methods and proposals in transform runtime is removed, add them by manual
