@@ -9,6 +9,7 @@ module.exports = (env, { mode, PROD = (mode ==='production') }) => ({
   resolve: {
     symlinks: false,
     modules: ['src', 'node_modules'],
+    alias: { res: `${__dirname}/res` },
   },
   entry: {
     app: './app.js',
@@ -36,6 +37,7 @@ module.exports = (env, { mode, PROD = (mode ==='production') }) => ({
           presets: [ ['@babel/preset-env', { modules: false }] ],
           plugins: [
             ['@babel/plugin-transform-runtime', { corejs: 2, useESModules: true }],
+            '@babel/plugin-syntax-dynamic-import',
             '@babel/plugin-proposal-class-properties',
             ['@babel/plugin-proposal-decorators', { decoratorsBeforeExport: false }],
             '@babel/plugin-proposal-do-expressions',
@@ -76,8 +78,9 @@ module.exports = (env, { mode, PROD = (mode ==='production') }) => ({
         },
       }],
     }, {
-      test: /\.(png|jpg|gif|mp4|m4a)$/,
       loader: 'url-loader',
+      test: path.resolve(__dirname, 'res'),
+      type: 'javascript/auto', // fix json type
       options: {
         limit: 10000,
         name: '[name]-[hash:8].[ext]',
