@@ -3,9 +3,11 @@
   "scripts": {
     "start": "webpack-dev-server --mode=development --hot --history-api-fallback",
     "build": "webpack --mode=production --progress --hide-modules",
-    "buildc": "rimraf dist/* & yarn build",
-    "buildstage": "env $(cat .env/development | grep -v ^# | xargs) yarn buildc",
-    "buildrelease": "env $(cat .env/production | grep -v ^# | xargs) yarn buildc"
+    "cleanup": "rimraf dist/*",
+    "prebuild": "yarn cleanup",
+    "builddemo": "PUBLIC=https://demo.yizidesign.com/xxxx/ yarn build",
+    "buildrelease": "PUBLIC=https://game.gtimg.cn/images/yxzj/cp/a20181010xxxx/ yarn build",
+    "package": "yarn buildrelease && pack-it -t ieg -n a20181010xxxx -s ./dist/"
   },
   "devDependencies": {
     "@babel/core": "latest",
