@@ -125,8 +125,8 @@ module.exports = (env, { mode, PROD = (mode ==='production') }) => ({
 })
 
 // default disable comments for `webpack -p`
-// https://github.com/webpack-contrib/uglifyjs-webpack-plugin/blob/master/src/index.js#L46
-Object.defineProperty(require('uglifyjs-webpack-plugin').prototype, 'options', {
+// https://github.com/webpack-contrib/terser-webpack-plugin/blob/master/src/index.js#L46
+Object.defineProperty(require('terser-webpack-plugin').prototype, 'options', {
   get() { return this._options },
-  set(o) { o.uglifyOptions.output.comments = false; this._options = o },
+  set(o) { o.terserOptions.output.comments = false; this._options = o },
 })
