@@ -119,7 +119,7 @@ module.exports = (env, { mode, PROD = (mode ==='production') }) => ({
         removeComments: PROD,
       },
     }),
-    // new (require('webpack-bundle-analyzer')).BundleAnalyzerPlugin(),
+    // new (require('webpack-bundle-analyzer')).BundleAnalyzerPlugin({ openAnalyzer: false }),
     // new (require('webpack-jarvis'))(),
   ],
 })
