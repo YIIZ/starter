@@ -6,7 +6,7 @@ import { loader }  from 'pixi-suite/src/managers'
 import { ViewAdapter, Widget } from 'pixi-suite/src/components'
 import { fadeInOut } from 'pixi-suite/src/transtions'
 
-const { Sprite, Text, Point, Texture: { WHITE }, extras: { TilingSprite }, spine: { Spine } } = PIXI
+const { Sprite, Text, Point, Texture: { WHITE }, extras: { TilingSprite } } = PIXI
 
 export default class Loading extends Scene {
   view = ViewAdapter.Portrait

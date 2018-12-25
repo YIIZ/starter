@@ -86,14 +86,15 @@ module.exports = (env, { mode, PROD = (mode ==='production') }) => ({
       test: path.resolve(__dirname, 'res'),
       type: 'javascript/auto', // fix json type
       options: {
-        limit: 10000,
-        name: '[name]-[hash:8].[ext]',
+        limit: 1000,
+        name: '[name].[ext]',
       },
     }, {
       test: /\.(png|jpg|gif|mp4|m4a|mp3|ttf)$/,
+      exclude: path.resolve(__dirname, 'res'),
       loader: 'url-loader',
       options: {
-        limit: 10000,
+        limit: 1000,
         name: '[name]-[hash:8].[ext]',
       },
     }],
