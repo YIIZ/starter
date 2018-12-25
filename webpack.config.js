@@ -26,6 +26,7 @@ module.exports = (env, { mode, PROD = (mode ==='production') }) => ({
       include: [
         path.resolve(__dirname, 'src'),
         path.resolve(__dirname, 'node_modules/lib'),
+        path.resolve(__dirname, 'node_modules/pixi-suite'),
         path.resolve(__dirname, 'node_modules/whatwg-fetch'),
         path.resolve(__dirname, 'node_modules/bootstrap'),
       ],
@@ -46,7 +47,10 @@ module.exports = (env, { mode, PROD = (mode ==='production') }) => ({
             '@babel/plugin-proposal-optional-chaining',
             // TODO wait https://github.com/tc39/proposal-partial-application
             ['@babel/plugin-proposal-pipeline-operator', { proposal: 'minimal' }],
-            'babel-plugin-transform-functional-jsx',
+            ["@babel/plugin-transform-react-jsx", {
+              "pragma": "Node.createChildren",
+              "pragmaFrag": "Node.createFrag",
+            }],
           ],
         },
       },
@@ -86,27 +90,17 @@ module.exports = (env, { mode, PROD = (mode ==='production') }) => ({
         name: '[name]-[hash:8].[ext]',
       },
     }, {
-      // for inline svg in template, opt svg by hand(ImageOptim)
-      test: /\.svg$/,
-      loader: 'raw-loader',
-    }, {
-      test: /\.val$/,
-      loader: 'val-loader',
+      test: /\.(png|jpg|gif|mp4|m4a|mp3|ttf)$/,
+      loader: 'url-loader',
+      options: {
+        limit: 10000,
+        name: '[name]-[hash:8].[ext]',
+      },
     }],
   },
   plugins: [
     new webpack.DefinePlugin({
       'process.env': JSON.stringify(process.env),
-    }),
-    new webpack.ProvidePlugin({
-      fetch: ['whatwg-fetch', 'fetch'],
-      // fake instance methods and proposals in transform runtime is removed, add them by manual
-      // https://github.com/babel/babel/pull/8547/files
-      'Array.every': 'core-js/library/fn/array/every',
-      'Array.find': 'core-js/library/fn/array/find',
-      'String.padStart': 'core-js/library/fn/string/padStart',
-      'String.repeat': 'core-js/library/fn/string/repeat',
-      'Observable': 'core-js/library/fn/observable',
     }),
     new MiniCssExtractPlugin({
       filename: '[name]-[contenthash:8].css',
@@ -115,7 +109,6 @@ module.exports = (env, { mode, PROD = (mode ==='production') }) => ({
       template: 'index.html.ejs',
       // https://github.com/kangax/html-minifier#options-quick-reference
       minify: {
-        collapseWhitespace: PROD,
         removeComments: PROD,
       },
     }),

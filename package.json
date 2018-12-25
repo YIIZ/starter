@@ -24,7 +24,7 @@
     "@babel/runtime-corejs2": "latest",
     "autoprefixer": "latest",
     "babel-loader": "latest",
-    "babel-plugin-transform-functional-jsx": "latest",
+    "@babel/plugin-transform-react-jsx": "latest",
     "css-loader": "latest",
     "exports-loader": "latest",
     "file-loader": "latest",
@@ -45,9 +45,15 @@
     "webpack-dev-server": "latest"
   },
   "dependencies": {
+    "@babel/runtime": "latest",
     "bootstrap": "^4.1.3",
+    "eventemitter3": "latest",
     "lib": "https://bitbucket.org/teambun/lib.git#master",
-    "whatwg-fetch": "^3.0.0"
+    "pixi-spine": "latest",
+    "pixi.js": "^4.8.4",
+    "whatwg-fetch": "^3.0.0",
+    "pixi-suite": "https://bitbucket.org/teambun/pixi-suite.git#master",
+    "popmotion": "^8.3.8"
   },
   "browserslist": [
     "> 1%",

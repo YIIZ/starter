@@ -1,19 +1,26 @@
-// @import "~milligram/src/Color";
-// @import "~milligram/src/Base";
-// @import "~lib/fade/fadeByTransition";
-// @import "~lib/hide/hide";
-// @import "~lib/features";
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/reboot";
 
-@import "foo";
-
-$color: red;
-h1 {
-  margin: 10px 20px 10px 20px;
-  color: $color;
-  user-select: none;
-  -webkit-user-select:none;
-
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
+body {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  background-color: #000;
 }
+
+.main canvas {
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  z-index: 2;
+}
+

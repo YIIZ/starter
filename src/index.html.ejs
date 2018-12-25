@@ -7,11 +7,22 @@
   <meta name="description" content="">
   <meta name="apple-mobile-web-app-capable" content="no">
   <meta name="format-detection" content="telephone=no">
+  <%if (process.env.BUILD_ENV !== 'production') { %>
+  <script src="https://res.wx.qq.com/mmbizwap/zh_CN/htmledition/js/vconsole/3.0.0/vconsole.min.js"></script>
+  <script>
+    if (location.search.match(/debug/)) {
+      var vConsole = new VConsole();
+    }
+  </script>
+  <%}%>
 </head>
 <body>
-  <h1><%= 'Hello World' %></h1>
-  <img src="<%= require('res/foo.png') %>" alt="">
-  <img src="<%= require('res/bar.png') %>" alt="">
-  <%= require('./foo.svg') %>
+  <div class="main">
+    <canvas></canvas>
+  </div>
+  <script>
+    // (function(){var script=document.createElement('script');script.onload=function(){var stats=new Stats();document.body.appendChild(stats.dom);requestAnimationFrame(function loop(){stats.update();requestAnimationFrame(loop)});};script.src='//mrdoob.github.io/stats.js/build/stats.min.js';document.head.appendChild(script);})()
+  </script>
 </body>
 </html>
+

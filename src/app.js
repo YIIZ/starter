@@ -1,49 +1,33 @@
+import 'core-js/modules/es6.array.find'
+import 'core-js/modules/es6.array.find-index'
+import 'core-js/modules/es6.map'
+
+import * as PIXI from 'pixi.js'
+import 'pixi-spine'
 import './app.scss'
 import { Deferred } from 'lib'
+import { loader, director, modalManager, toast } from 'pixi-suite/src/managers'
+import store from './managers/store'
 
-import { img, param } from '!!val-loader?b=3!./foo.js.val'
+director.init(document.querySelector('.main'), { transparent: true })
 
-console.log(img, param)
+director.addScene('loading', require('./scenes/Loading').default)
+director.addScene('main', require('./scenes/Main').default)
 
-class Foo {}
-Array.every([], () => true)
+director.loadScene('loading')
 
-const defer = new Deferred
-defer.resolve()
-// defer.promise
-
-const listen = (el, eventName) => new Observable(ob => {
-  const handler = evt => ob.next(evt)
-  el.addEventListener(eventName, handler)
-  return () => el.removeEventListener(eventName, handler)
-})
-
-const take = (source, n) =>
-  new Observable(observer => {
-    let remain = n
-    return source.subscribe({
-      next(value) {
-        remain -= 1
-        if (remain < 1) observer.complete()
-        else observer.next(value)
-      },
-      error(e) {
-        observer.error(e)
-      },
-      complete() {
-        observer.complete()
-      },
-    })
-  })
-
-const tenMoves = listen(document.body, 'mousemove')
-  |> (_ => take(_, 10))
-
-tenMoves.subscribe({ next({ x }) { console.log(`move x:${x}`) } })
-
-console.log('success')
-
-function foo() {
-  return 1
+if (process.env.NODE_ENV === 'development') {
+  const nextScene = location.search.slice(1).match(/scene=(\w*)/)?.[1]
+  if (nextScene) {
+    director.scene.nextScene = nextScene
+    director.scene.autoNext = true
+  }
 }
-console.log(<foo></foo>)
+
+modalManager.initContainer()
+toast.initContainer()
+
+window.PIXI = PIXI
+window.director = director
+window.loader = loader
+window.store = store
