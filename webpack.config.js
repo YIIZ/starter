@@ -3,12 +3,13 @@ const webpack = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HTMLPlugin = require('html-webpack-plugin')
 const sassFunctions = require('lib/scss/functions')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = (env, { mode, PROD = (mode ==='production') }) => ({
   context: `${__dirname}/src`,
   resolve: {
     symlinks: false,
-    modules: ['src', 'node_modules'],
+    modules: ['src', 'node_modules', 'res'],
     alias: { res: `${__dirname}/res` },
   },
   entry: {
@@ -87,7 +88,7 @@ module.exports = (env, { mode, PROD = (mode ==='production') }) => ({
       type: 'javascript/auto', // fix json type
       options: {
         limit: 1000,
-        name: '[name].[ext]',
+        name: '[name]-[hash:8].[ext]',
       },
     }, {
       test: /\.(png|jpg|gif|mp4|m4a|mp3|ttf)$/,
@@ -106,6 +107,7 @@ module.exports = (env, { mode, PROD = (mode ==='production') }) => ({
     new MiniCssExtractPlugin({
       filename: '[name]-[contenthash:8].css',
     }),
+    //new CopyWebpackPlugin([{ from: `${__dirname}/third_party/`, to: `${__dirname}/dist/` }]),
     new HTMLPlugin({
       template: 'index.html.ejs',
       // https://github.com/kangax/html-minifier#options-quick-reference
