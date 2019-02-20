@@ -2,7 +2,6 @@ const path = require('path')
 const webpack = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HTMLPlugin = require('html-webpack-plugin')
-const sassFunctions = require('lib/scss/functions')
 
 module.exports = (env, { mode, PROD = (mode ==='production') }) => ({
   context: `${__dirname}/src`,
@@ -73,8 +72,8 @@ module.exports = (env, { mode, PROD = (mode ==='production') }) => ({
       }, {
         loader: 'sass-loader',
         options: {
+          implementation: require('sass'),
           sourceMap: true,
-          functions: sassFunctions,
         },
       }],
     }, {
