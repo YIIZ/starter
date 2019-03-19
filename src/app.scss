@@ -1,7 +1,7 @@
-@import "~bootstrap/scss/functions";
-@import "~bootstrap/scss/variables";
-@import "~bootstrap/scss/mixins";
-@import "~bootstrap/scss/reboot";
+html, body {
+  margin: 0;
+  padding: 0;
+}
 
 body {
   position: fixed;
@@ -11,6 +11,13 @@ body {
   bottom: 0;
   overflow: hidden;
   background-color: #000;
+}
+
+.main {
+  width: 100%;
+  height: 100%;
+  background-color: #0660db;
+  background-image: radial-gradient(circle at top left, #287ef4, #005ad6 60%, #0052cd 100%);
 }
 
 .main canvas {
@@ -23,4 +30,10 @@ body {
   cursor: pointer;
   z-index: 2;
 }
+
+// for video jsplayer
+canvas.video {
+  z-index: 1;
+}
+
 

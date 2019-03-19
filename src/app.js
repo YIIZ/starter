@@ -4,9 +4,11 @@ import 'core-js/modules/es6.map'
 
 import * as PIXI from 'pixi.js'
 import 'pixi-spine'
+import '@teambun/loader/lib/env/brower-pixi.js'
+import loader from '@teambun/loader'
+
 import './app.scss'
-import { Deferred } from 'lib'
-import { loader, director, modalManager, toast } from 'pixi-suite/src/managers'
+import { director, modalManager, toast } from 'pixi-suite/src/managers'
 import store from './managers/store'
 
 director.init(document.querySelector('.main'), { transparent: true })

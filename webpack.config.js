@@ -2,7 +2,6 @@ const path = require('path')
 const webpack = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HTMLPlugin = require('html-webpack-plugin')
-const sassFunctions = require('lib/scss/functions')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = (env, { mode, PROD = (mode ==='production') }) => ({
@@ -26,10 +25,8 @@ module.exports = (env, { mode, PROD = (mode ==='production') }) => ({
       test: /\.js$/,
       include: [
         path.resolve(__dirname, 'src'),
-        path.resolve(__dirname, 'node_modules/lib'),
         path.resolve(__dirname, 'node_modules/pixi-suite'),
         path.resolve(__dirname, 'node_modules/whatwg-fetch'),
-        path.resolve(__dirname, 'node_modules/bootstrap'),
       ],
       use: {
         loader: 'babel-loader',
@@ -74,12 +71,6 @@ module.exports = (env, { mode, PROD = (mode ==='production') }) => ({
           plugins: [
             require('autoprefixer')(),
           ],
-        },
-      }, {
-        loader: 'sass-loader',
-        options: {
-          sourceMap: true,
-          functions: sassFunctions,
         },
       }],
     }, {

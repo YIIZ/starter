@@ -1,12 +1,16 @@
 import * as PIXI from 'pixi.js'
 import { tween, easing } from 'popmotion'
+import loader from '@teambun/loader'
 
 import { Scene, Node } from 'pixi-suite/src/containers'
-import { loader }  from 'pixi-suite/src/managers'
 import { ViewAdapter, Widget } from 'pixi-suite/src/components'
-import { fadeInOut } from 'pixi-suite/src/transtions'
+import { fadeOut } from 'pixi-suite/src/transtions'
 
 const { Sprite, Text, Point, Texture: { WHITE }, extras: { TilingSprite } } = PIXI
+const center = new Point(0.5, 0.5)
+
+const mLoader = loader.group('loading')
+const bar = mLoader.add(require('bar.png'))
 
 export default class Loading extends Scene {
   view = ViewAdapter.Portrait
@@ -22,8 +26,14 @@ export default class Loading extends Scene {
     </>)
   }
 
-  onAdd() {
-    loader.on('progress', this.handeProgress, this)
+  async onAdd() {
+    // load images for this scene first
+    mLoader.run()
+    await mLoader.promise
+    const sp = <Sprite texture={bar.texture} x={375} y={700} anchor={center} />
+    this.addChild(sp)
+
+    loader.on('update', this.handeProgress, this)
     loader.on('complete', this.handeComplete, this)
     loader.run()
   }
@@ -32,7 +42,7 @@ export default class Loading extends Scene {
   }
 
   handeComplete() {
-    director.loadScene(this.nextScene)
+    director.loadScene(this.nextScene, fadeOut)
   }
 }
 
