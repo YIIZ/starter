@@ -37,7 +37,7 @@ const take = (source, n) =>
   })
 
 const tenMoves = listen(document.body, 'mousemove')
-  |> (_ => take(_, 10))
+  |> take(?, 10)
 
 tenMoves.subscribe({ next({ x }) { console.log(`move x:${x}`) } })
 

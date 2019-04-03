@@ -43,7 +43,7 @@ module.exports = (env, { mode, PROD = (mode ==='production') }) => ({
             '@babel/plugin-proposal-logical-assignment-operators',
             '@babel/plugin-proposal-nullish-coalescing-operator',
             '@babel/plugin-proposal-optional-chaining',
-            // TODO wait https://github.com/tc39/proposal-partial-application
+            '@babel/plugin-proposal-partial-application',
             ['@babel/plugin-proposal-pipeline-operator', { proposal: 'minimal' }],
             'babel-plugin-transform-functional-jsx',
           ],
