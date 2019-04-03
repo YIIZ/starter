@@ -38,7 +38,6 @@
     "webpack-dev-server": "latest"
   },
   "dependencies": {
-    "black": "https://github.com/MassiveHeights/Black.git#v0.6.x-dev",
     "lib": "https://bitbucket.org/teambun/lib.git#master",
     "whatwg-fetch": "^3.0.0"
   },

@@ -24,7 +24,6 @@ module.exports = (env, { mode, PROD = (mode ==='production') }) => ({
       include: [
         path.resolve(__dirname, 'src'),
         path.resolve(__dirname, 'node_modules/whatwg-fetch'),
-        path.resolve(__dirname, 'node_modules/black'),
       ],
       use: {
         loader: 'babel-loader',
