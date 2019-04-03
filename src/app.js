@@ -6,7 +6,7 @@ import { img, param } from '!!val-loader?b=3!./foo.js.val'
 console.log(img, param)
 
 class Foo {}
-Array.every([], () => true)
+[].every(() => true)
 
 const defer = new Deferred
 defer.resolve()
