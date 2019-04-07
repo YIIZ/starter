@@ -99,13 +99,6 @@ module.exports = (env, { mode, PROD = (mode ==='production') }) => ({
     }),
     new webpack.ProvidePlugin({
       fetch: ['whatwg-fetch', 'fetch'],
-      // fake instance methods and proposals in transform runtime is removed, add them by manual
-      // https://github.com/babel/babel/pull/8547/files
-      'Array.every': 'core-js/library/fn/array/every',
-      'Array.find': 'core-js/library/fn/array/find',
-      'String.padStart': 'core-js/library/fn/string/padStart',
-      'String.repeat': 'core-js/library/fn/string/repeat',
-      'Observable': 'core-js/library/fn/observable',
     }),
     new MiniCssExtractPlugin({
       filename: '[name]-[contenthash:8].css',
