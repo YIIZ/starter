@@ -35,7 +35,7 @@ module.exports = (env, { mode, PROD = (mode ==='production') }) => ({
           babelrc: false,
           presets: [ ['@babel/preset-env', { modules: false }] ],
           plugins: [
-            ['@babel/plugin-transform-runtime', { corejs: 2, useESModules: true }],
+            ['@babel/plugin-transform-runtime', { corejs: 3, useESModules: true }],
             '@babel/plugin-syntax-dynamic-import',
             '@babel/plugin-proposal-class-properties',
             ['@babel/plugin-proposal-decorators', { decoratorsBeforeExport: false }],

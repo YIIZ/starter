@@ -1,13 +1,9 @@
-import 'core-js/modules/es6.array.find'
-import 'core-js/modules/es6.array.find-index'
-import 'core-js/modules/es6.map'
-
 import * as PIXI from 'pixi.js'
 import 'pixi-spine'
 import '@teambun/loader/lib/env/brower-pixi.js'
 import loader from '@teambun/loader'
 
-import './app.scss'
+import './app.css'
 import { director, modalManager, toast } from 'pixi-suite/src/managers'
 import store from './managers/store'
 
