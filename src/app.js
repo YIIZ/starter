@@ -4,7 +4,7 @@ import '@teambun/loader/lib/env/brower-pixi.js'
 import loader from '@teambun/loader'
 
 import './app.css'
-import { director, modalManager, toast } from 'pixi-suite/src/managers'
+import { director, modalManager, toaster } from 'pixi-suite/src/managers'
 import store from './managers/store'
 
 director.init(document.querySelector('.main'), { transparent: true })
@@ -23,7 +23,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 modalManager.initContainer()
-toast.initContainer()
+toaster.initContainer()
 
 window.PIXI = PIXI
 window.director = director
