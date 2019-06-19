@@ -16,8 +16,7 @@ body {
 .main {
   width: 100%;
   height: 100%;
-  background-color: #0660db;
-  background-image: radial-gradient(circle at top left, #287ef4, #005ad6 60%, #0052cd 100%);
+  background-color: #fff;
 }
 
 .main canvas {

@@ -1,5 +1,4 @@
 import * as PIXI from 'pixi.js'
-import 'pixi-spine'
 import '@teambun/loader/lib/env/brower-pixi.js'
 import loader from '@teambun/loader'
 

@@ -4,6 +4,7 @@ import loader from '@teambun/loader'
 
 import { Scene, Node } from 'pixi-suite/src/containers'
 import { ViewAdapter, Widget } from 'pixi-suite/src/components'
+import { director } from 'pixi-suite/src/managers'
 
 const { WHITE } = Texture
 const center = new Point(0.5, 0.5)
@@ -15,7 +16,6 @@ export default class Main extends Scene {
   view = ViewAdapter.Portrait
 
   initChildren() {
-    console.log(foo, bar)
     return (<>
       <Sprite texture={WHITE} width={750} height={1625} y={-62.5} tint={0x555555}/>
       <Sprite x={375} y={750} texture={foo.texture} anchor={center} />
