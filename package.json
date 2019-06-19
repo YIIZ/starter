@@ -25,7 +25,7 @@
     "@babel/runtime-corejs3": "latest",
     "autoprefixer": "latest",
     "babel-loader": "latest",
-    "copy-webpack-plugin": "^4.6.0",
+    "copy-webpack-plugin": "latest",
     "css-loader": "latest",
     "exports-loader": "latest",
     "file-loader": "latest",
@@ -48,10 +48,10 @@
     "eventemitter3": "latest",
     "pixi-spine": "latest",
     "@teambun/loader": "https://bitbucket.org/teambun/loader.git#master",
-    "pixi-suite": "https://bitbucket.org/teambun/pixi-suite.git#master",
-    "pixi.js": "^4.8.4",
-    "popmotion": "^8.3.8",
-    "whatwg-fetch": "^3.0.0"
+    "pixi-suite": "https://bitbucket.org/teambun/pixi-suite.git#pixi_v4",
+    "pixi.js": "^4.8.0",
+    "popmotion": "latest",
+    "whatwg-fetch": "latest"
   },
   "browserslist": [
     "> 1%",

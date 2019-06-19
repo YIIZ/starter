@@ -1,12 +1,12 @@
-import * as PIXI from 'pixi.js'
+import { Sprite, Text, Point, Texture } from 'pixi.js'
 import { tween, easing } from 'popmotion'
 import loader from '@teambun/loader'
 
 import { Scene, Node } from 'pixi-suite/src/containers'
 import { ViewAdapter, Widget } from 'pixi-suite/src/components'
-import { fadeOut } from 'pixi-suite/src/transtions'
+import { fadeOut } from 'pixi-suite/src/transitions'
 
-const { Sprite, Text, Point, Texture: { WHITE }, extras: { TilingSprite } } = PIXI
+const { WHITE } = Texture
 const center = new Point(0.5, 0.5)
 
 const mLoader = loader.group('loading')
