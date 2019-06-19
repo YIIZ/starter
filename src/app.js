@@ -26,6 +26,6 @@ modalManager.initContainer()
 toaster.initContainer()
 
 window.PIXI = PIXI
-window.director = director
-window.loader = loader
-window.store = store
+window._director = director
+window._loader = loader
+window._store = store

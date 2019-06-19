@@ -35,7 +35,7 @@ module.exports = (env, { mode, PROD = (mode ==='production') }) => ({
           babelrc: false,
           presets: [ ['@babel/preset-env', { modules: false }] ],
           plugins: [
-            ['@babel/plugin-transform-runtime', { corejs: 3, useESModules: true }],
+            ['@babel/plugin-transform-runtime', { corejs: 3, useESModules: false }],
             '@babel/plugin-syntax-dynamic-import',
             '@babel/plugin-proposal-class-properties',
             ['@babel/plugin-proposal-decorators', { decoratorsBeforeExport: false }],
@@ -109,11 +109,4 @@ module.exports = (env, { mode, PROD = (mode ==='production') }) => ({
     // new (require('webpack-bundle-analyzer')).BundleAnalyzerPlugin({ openAnalyzer: false }),
     // new (require('webpack-jarvis'))(),
   ],
-})
-
-// default disable comments for `webpack -p`
-// https://github.com/webpack-contrib/terser-webpack-plugin/blob/master/src/index.js#L46
-Object.defineProperty(require('terser-webpack-plugin').prototype, 'options', {
-  get() { return this._options },
-  set(o) { o.terserOptions.output.comments = false; this._options = o },
 })
