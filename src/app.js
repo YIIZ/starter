@@ -1,4 +1,4 @@
-import '@teambun/loader/lib/env/brower-pixi.js'
+import '@teambun/loader/src/env/brower-pixi.js'
 import loader from '@teambun/loader'
 
 import './app.css'

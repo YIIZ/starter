@@ -20,8 +20,8 @@ export default class Loading extends Scene {
   initChildren() {
     return (<>
       <Sprite texture={WHITE} width={750} height={1625} y={-62.5} />
-      <PIXI.Text name='progress' x={375} y={750}
-        anchor={new PIXI.Point(0.5, 0.5)}
+      <Text name='progress' x={375} y={750}
+        anchor={new Point(0.5, 0.5)}
         text='加载中'
       />
     </>)
