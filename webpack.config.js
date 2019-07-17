@@ -9,7 +9,7 @@ module.exports = (env, { mode, PROD = (mode ==='production') }) => ({
   resolve: {
     symlinks: false,
     modules: ['src', 'node_modules', 'res'],
-    alias: { res: `${__dirname}/res` },
+    alias: { res: `${__dirname}/res`, 'pixi-spine.es': `${__dirname}/src/spine.js.val` },
   },
   entry: {
     app: './app.js',
@@ -27,13 +27,14 @@ module.exports = (env, { mode, PROD = (mode ==='production') }) => ({
         path.resolve(__dirname, 'src'),
         path.resolve(__dirname, 'node_modules/pixi-suite'),
         path.resolve(__dirname, 'node_modules/whatwg-fetch'),
+        path.resolve(__dirname, 'node_modules/@teambun'),
       ],
       use: {
         loader: 'babel-loader',
         options: {
           // ignore babelrc in node_modules
           babelrc: false,
-          presets: [ ['@babel/preset-env', { modules: false }] ],
+          presets: [ ['@babel/preset-env', { modules: 'commonjs' }] ],
           plugins: [
             ['@babel/plugin-transform-runtime', { corejs: 3, useESModules: false }],
             '@babel/plugin-syntax-dynamic-import',
@@ -52,6 +53,9 @@ module.exports = (env, { mode, PROD = (mode ==='production') }) => ({
           ],
         },
       },
+    }, {
+      test: /\.val$/,
+      loader: 'val-loader',
     }, {
       test: /\.s?css$/,
       use: [{
@@ -106,7 +110,8 @@ module.exports = (env, { mode, PROD = (mode ==='production') }) => ({
         removeComments: PROD,
       },
     }),
-    // new (require('webpack-bundle-analyzer')).BundleAnalyzerPlugin({ openAnalyzer: false }),
+    //new (require('webpack-bundle-analyzer')).BundleAnalyzerPlugin({ openAnalyzer: false }),
     // new (require('webpack-jarvis'))(),
   ],
 })
+

@@ -1,4 +1,3 @@
-import * as PIXI from 'pixi.js'
 import '@teambun/loader/lib/env/brower-pixi.js'
 import loader from '@teambun/loader'
 
@@ -24,7 +23,6 @@ if (process.env.NODE_ENV === 'development') {
 modalManager.initContainer()
 toaster.initContainer()
 
-window.PIXI = PIXI
 window._director = director
 window._loader = loader
 window._store = store

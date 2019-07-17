@@ -48,8 +48,8 @@
     "eventemitter3": "latest",
     "pixi-spine": "latest",
     "@teambun/loader": "https://bitbucket.org/teambun/loader.git#master",
-    "pixi-suite": "https://bitbucket.org/teambun/pixi-suite.git#pixi_v4",
-    "pixi.js": "^4.8.0",
+    "pixi-suite": "https://bitbucket.org/teambun/pixi-suite.git#master",
+    "pixi.js": "latest",
     "popmotion": "latest",
     "whatwg-fetch": "latest"
   },
