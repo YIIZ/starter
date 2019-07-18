@@ -19,13 +19,9 @@
     function loadJS(src, callback) {
       var sTag = document.createElement( 'script' );
       sTag.src = src;
+      sTag.onload = callback;
       var first = document.getElementsByTagName('script')[0];
       first.parentNode.insertBefore(sTag, first);
-      sTag.onreadystatechange = sTag.onload = function () {
-        var state = sTag.readyState;
-        if (!state || /loaded|complete/.test(state)) return;
-        callback();
-      }
     }
   </script>
   <%}%>
