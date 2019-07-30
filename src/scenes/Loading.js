@@ -34,15 +34,15 @@ export default class Loading extends Scene {
     const sp = <Sprite texture={bar.texture} x={375} y={700} anchor={center} />
     this.addChild(sp)
 
-    loader.on('update', this.handeProgress, this)
-    loader.on('complete', this.handeComplete, this)
+    loader.on('update', this.handleProgress, this)
+    loader.on('complete', this.handleComplete, this)
     loader.run()
   }
 
-  handeProgress(v) {
+  handleProgress(v) {
   }
 
-  handeComplete() {
+  handleComplete() {
     director.loadScene(this.nextScene, fadeOut)
   }
 }
