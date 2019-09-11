@@ -1,7 +1,0 @@
-# https://stackoverflow.com/a/20909045/1793548
-# env $(cat .env | grep -v ^# | xargs) rails
-
-# same host
-# TODO share info?
-PUBLIC=/sample/
-SHARE_URL=https://h5.quanduan.com/sample/index.html
