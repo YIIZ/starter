@@ -38,6 +38,7 @@ module.exports = (env, { mode, PROD = (mode ==='production') }) => ({
             }],
           ],
           plugins: [
+            ['@babel/plugin-transform-runtime', { useESModules: true }],
             '@babel/plugin-syntax-dynamic-import',
             '@babel/plugin-proposal-class-properties',
             ['@babel/plugin-proposal-decorators', { decoratorsBeforeExport: false }],

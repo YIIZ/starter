@@ -40,5 +40,7 @@ const tenMoves = listen(document.body, 'mousemove')
 
 tenMoves.subscribe({ next({ x }) { console.log(`move x:${x}`) } })
 
+const fn = async () => {}
+
 console.log('success')
 console.log(Math.clamp(2, 0, 1))
