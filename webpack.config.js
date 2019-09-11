@@ -30,7 +30,13 @@ module.exports = (env, { mode, PROD = (mode ==='production') }) => ({
         options: {
           // ignore babelrc in node_modules
           babelrc: false,
-          presets: [ ['@babel/preset-env', { modules: false, useBuiltIns: 'usage', corejs: 3, }] ],
+          presets: [
+            ['@babel/preset-env', {
+              modules: false,
+              useBuiltIns: 'usage',
+              corejs: { version: 3, proposals: true },
+            }],
+          ],
           plugins: [
             '@babel/plugin-syntax-dynamic-import',
             '@babel/plugin-proposal-class-properties',
