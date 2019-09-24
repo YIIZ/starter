@@ -35,6 +35,7 @@ module.exports = (env, { mode, PROD = (mode ==='production') }) => ({
               modules: false,
               useBuiltIns: 'usage',
               corejs: { version: 3, proposals: true },
+              debug: !PROD,
             }],
           ],
           plugins: [
