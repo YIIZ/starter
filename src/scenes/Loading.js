@@ -18,13 +18,12 @@ export default class Loading extends Scene {
   nextScene = 'main'
 
   initChildren() {
-    return (<>
-      <Sprite texture={WHITE} width={750} height={1625} y={-62.5} />
-      <Text name='progress' x={375} y={750}
-        anchor={new Point(0.5, 0.5)}
-        text='加载中'
-      />
-    </>)
+    return (
+      <>
+        <Sprite texture={WHITE} width={750} height={1500} />
+        <Text name="progress" x={375} y={750} anchor={center} text="加载中" />
+      </>
+    )
   }
 
   async onAdd() {
@@ -39,11 +38,9 @@ export default class Loading extends Scene {
     loader.run()
   }
 
-  handleProgress(v) {
-  }
+  handleProgress(v) {}
 
   handleComplete() {
     director.loadScene(this.nextScene, fadeOut)
   }
 }
-
