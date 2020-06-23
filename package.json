@@ -22,8 +22,10 @@
     "@babel/plugin-syntax-dynamic-import": "latest",
     "@babel/plugin-transform-runtime": "latest",
     "@babel/preset-env": "latest",
+    "@babel/preset-react": "latest",
     "@babel/runtime": "latest",
     "babel-loader": "latest",
+    "babel-plugin-transform-jsxspreadchild": "latest",
     "core-js": "^3.2.1",
     "exports-loader": "latest",
     "file-loader": "latest",
@@ -38,7 +40,7 @@
     "webpack-dev-server": "latest"
   },
   "dependencies": {
-    "lib": "https://bitbucket.org/teambun/lib.git#master",
+    "lib": "https://github.com/yiiz/lib/archive/master.tar.gz",
     "whatwg-fetch": "^3.0.0"
   },
   "browserslist": [
