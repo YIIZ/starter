@@ -6,10 +6,11 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = (env, { mode, PROD = mode === 'production' }) => ({
   context: `${__dirname}/src`,
+  devtool: 'inline-source-map',
   resolve: {
     symlinks: false,
     modules: ['src', 'node_modules', 'res'],
-    alias: { res: `${__dirname}/res`, 'pixi-spine.es': `${__dirname}/src/spine.js.val` },
+    alias: { res: `${__dirname}/res` },
   },
   entry: {
     app: './app.js',
@@ -73,15 +74,14 @@ module.exports = (env, { mode, PROD = mode === 'production' }) => ({
           },
           {
             loader: 'css-loader',
-            options: {
-              sourceMap: true,
-            },
+            options: { importLoaders: 1 },
           },
           {
             loader: 'postcss-loader',
             options: {
-              sourceMap: true,
-              plugins: [require('autoprefixer')()],
+              postcssOptions: {
+                plugins: ['autoprefixer'],
+              },
             },
           },
         ],

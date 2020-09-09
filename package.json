@@ -7,6 +7,7 @@
     "prebuild": "yarn cleanup",
     "builddemo": "env $(cat .env/development | grep -v ^# | xargs) yarn build",
     "buildrelease": "env $(cat .env/production | grep -v ^# | xargs) yarn build",
+    "deploy": "yarn build && coscp --cache 0 dist demo:demo",
     "package": "yarn buildrelease && pack-it -t ieg -n a20181010xxxx -s ./dist/"
   },
   "devDependencies": {
@@ -47,8 +48,8 @@
     "@babel/runtime": "latest",
     "eventemitter3": "latest",
     "pixi-spine": "latest",
-    "@teambun/loader": "https://bitbucket.org/teambun/loader.git#master",
-    "pixi-suite": "https://bitbucket.org/teambun/pixi-suite.git#master",
+    "@teambun/loader": "https://github.com/yiiz/loader.git#master",
+    "pixi-suite": "https://github.com/yiiz/pixi-suite.git#master",
     "pixi.js": "latest",
     "popmotion": "latest",
     "whatwg-fetch": "latest"
