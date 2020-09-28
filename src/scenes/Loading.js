@@ -15,7 +15,6 @@ const bar = mLoader.add(require('bar.png'))
 
 export default class Loading extends Scene {
   view = ViewAdapter.Portrait
-  nextScene = 'main'
 
   initChildren() {
     return (

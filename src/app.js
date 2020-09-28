@@ -7,10 +7,11 @@ import store from './managers/store'
 
 director.init(document.querySelector('.main'), { transparent: true })
 
-director.addScene('loading', require('./scenes/Loading').default)
-director.addScene('main', require('./scenes/Main').default)
+director.addScene('Loading', require('./scenes/Loading').default)
+director.addScene('Main', require('./scenes/Main').default)
 
 director.loadScene('loading')
+director.scene.nextScene = 'Main'
 
 if (process.env.NODE_ENV === 'development') {
   const nextScene = location.search.slice(1).match(/scene=(\w*)/)?.[1]
