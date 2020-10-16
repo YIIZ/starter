@@ -43,10 +43,6 @@
     "lib": "https://github.com/yiiz/lib/archive/master.tar.gz",
     "whatwg-fetch": "^3.0.0"
   },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions"
-  ],
   "optionalDependencies": {
     "webpack-bundle-analyzer": "latest",
     "webpack-jarvis": "latest"
