@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "start": "webpack-dev-server --mode=development --hot --history-api-fallback",
+    "start": "webpack-dev-server --mode=development --history-api-fallback",
     "build": "webpack --mode=production --progress --hide-modules",
     "cleanup": "rimraf dist/*",
     "prebuild": "yarn cleanup",
@@ -10,41 +10,32 @@
     "package": "yarn buildrelease && pack-it -t ieg -n a20181010xxxx -s ./dist/"
   },
   "devDependencies": {
-    "@babel/core": "latest",
-    "@babel/plugin-proposal-class-properties": "latest",
-    "@babel/plugin-proposal-decorators": "latest",
-    "@babel/plugin-proposal-do-expressions": "latest",
-    "@babel/plugin-proposal-logical-assignment-operators": "latest",
-    "@babel/plugin-proposal-nullish-coalescing-operator": "latest",
-    "@babel/plugin-proposal-optional-chaining": "latest",
-    "@babel/plugin-proposal-partial-application": "latest",
-    "@babel/plugin-proposal-pipeline-operator": "latest",
-    "@babel/plugin-syntax-dynamic-import": "latest",
-    "@babel/plugin-transform-runtime": "latest",
-    "@babel/preset-env": "latest",
-    "@babel/preset-react": "latest",
-    "@babel/runtime": "latest",
-    "babel-loader": "latest",
+    "@babel/core": "^7.12.1",
+    "@babel/plugin-transform-runtime": "^7.12.1",
+    "@babel/preset-env": "^7.12.1",
+    "@babel/preset-react": "^7.12.1",
+    "@babel/runtime": "^7.12.1",
+    "babel-loader": "^8.1.0",
     "babel-plugin-transform-jsxspreadchild": "latest",
     "core-js": "^3.2.1",
-    "exports-loader": "latest",
-    "file-loader": "latest",
-    "html-webpack-plugin": "latest",
-    "imports-loader": "latest",
-    "raw-loader": "latest",
-    "rimraf": "latest",
-    "url-loader": "latest",
-    "val-loader": "latest",
-    "webpack": "latest",
-    "webpack-cli": "latest",
-    "webpack-dev-server": "latest"
+    "exports-loader": "^1.1.1",
+    "file-loader": "^6.1.1",
+    "html-webpack-plugin": "^4.5.0",
+    "imports-loader": "^1.2.0",
+    "raw-loader": "^4.0.2",
+    "rimraf": "^3.0.2",
+    "url-loader": "^4.1.1",
+    "val-loader": "^2.1.2",
+    "webpack": "^5.1.2",
+    "webpack-cli": "^4.0.0",
+    "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
     "lib": "https://github.com/yiiz/lib/archive/master.tar.gz",
     "whatwg-fetch": "^3.0.0"
   },
   "optionalDependencies": {
-    "webpack-bundle-analyzer": "latest",
+    "webpack-bundle-analyzer": "^3.9.0",
     "webpack-jarvis": "latest"
   }
 }

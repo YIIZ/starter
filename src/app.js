@@ -1,4 +1,4 @@
-import { Deferred } from 'lib'
+import { Deferred } from 'lib/utils'
 
 import { img, param } from '!!val-loader?b=3!./foo.js.val'
 
@@ -35,8 +35,7 @@ const take = (source, n) =>
     })
   })
 
-const tenMoves = listen(document.body, 'mousemove')
-  |> take(?, 10)
+const tenMoves = take(listen(document.body, 'mousemove'), 10)
 
 tenMoves.subscribe({ next({ x }) { console.log(`move x:${x}`) } })
 
