@@ -2,12 +2,12 @@
   "private": true,
   "scripts": {
     "start": "webpack-dev-server --mode=development --hot --history-api-fallback",
-    "build": "webpack --mode=production --progress --hide-modules",
+    "build": "webpack --mode=production --progress",
     "cleanup": "rimraf dist/*",
     "prebuild": "yarn cleanup",
     "builddemo": "env $(cat .env/development | grep -v ^# | xargs) yarn build",
     "buildrelease": "env $(cat .env/production | grep -v ^# | xargs) yarn build",
-    "deploy": "yarn build && coscp --cache 0 dist demo:demo",
+    "deploy": "yarn build && coscp --cache 0 dist demo:test",
     "package": "yarn buildrelease && pack-it -t ieg -n a20181010xxxx -s ./dist/"
   },
   "devDependencies": {
@@ -46,9 +46,10 @@
   },
   "dependencies": {
     "@babel/runtime": "latest",
-    "eventemitter3": "latest",
-    "pixi-spine": "latest",
     "@teambun/loader": "https://github.com/yiiz/loader.git#master",
+    "eventemitter3": "latest",
+    "path-browserify": "latest",
+    "pixi-spine": "latest",
     "pixi-suite": "https://github.com/yiiz/pixi-suite.git#master",
     "pixi.js": "latest",
     "popmotion": "latest",

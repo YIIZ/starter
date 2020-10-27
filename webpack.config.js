@@ -11,6 +11,7 @@ module.exports = (env, { mode, PROD = mode === 'production' }) => ({
     symlinks: false,
     modules: ['src', 'node_modules', 'res'],
     alias: { res: `${__dirname}/res` },
+    fallback: { path: require.resolve('path-browserify') },
   },
   entry: {
     app: './app.js',
@@ -118,6 +119,7 @@ module.exports = (env, { mode, PROD = mode === 'production' }) => ({
     //new CopyWebpackPlugin([{ from: `${__dirname}/third_party/`, to: `${__dirname}/dist/` }]),
     new HTMLPlugin({
       template: 'index.html.ejs',
+      inject: false,
       // https://github.com/kangax/html-minifier#options-quick-reference
       minify: {
         removeComments: PROD,

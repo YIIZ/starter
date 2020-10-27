@@ -10,7 +10,7 @@ director.init(document.querySelector('.main'), { transparent: true })
 director.addScene('Loading', require('./scenes/Loading').default)
 director.addScene('Main', require('./scenes/Main').default)
 
-director.loadScene('loading')
+director.loadScene('Loading')
 director.scene.nextScene = 'Main'
 
 if (process.env.NODE_ENV === 'development') {

@@ -3,21 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <title>Document</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
   <meta name="description" content="">
   <meta name="apple-mobile-web-app-capable" content="no">
   <meta name="format-detection" content="telephone=no">
-  <%if (process.env.BUILD_ENV !== 'production') { %>
+  <meta name="robots" content="all">
+  <meta name="author" content="Tencent-CP" />
+  <meta name="copyright" content="Tencent" />
+  <meta name="description" content="" />
+  <meta name="keywords" content="" />
+  <%= htmlWebpackPlugin.tags.headTags %>
+  <%if (process.env.DEPLOY_ENV !== 'prod') { %>
   <script>
     if (location.hash.match(/debug/)) {
-      var jsSrc = "https://cdn.bootcss.com/vConsole/3.3.0/vconsole.min.js";
-      loadJS(jsSrc, function () {
+      var jsSrc = "https://cdn.bootcdn.net/ajax/libs/vConsole/3.3.4/vconsole.min.js";
+      loadJS(jsSrc, function() {
         var vConsole = new VConsole();
       })
     }
 
     function loadJS(src, callback) {
-      var sTag = document.createElement( 'script' );
+      var sTag = document.createElement('script');
       sTag.src = src;
       sTag.onload = callback;
       var first = document.getElementsByTagName('script')[0];
@@ -26,13 +32,29 @@
   </script>
   <%}%>
 </head>
+
 <body>
   <div class="main">
     <canvas></canvas>
   </div>
   <script>
-    // (function(){var script=document.createElement('script');script.onload=function(){var stats=new Stats();document.body.appendChild(stats.dom);requestAnimationFrame(function loop(){stats.update();requestAnimationFrame(loop)});};script.src='//mrdoob.github.io/stats.js/build/stats.min.js';document.head.appendChild(script);})()
+  // (function(){var script=document.createElement('script');script.onload=function(){var stats=new Stats();document.body.appendChild(stats.dom);requestAnimationFrame(function loop(){stats.update();requestAnimationFrame(loop)});};script.src='//mrdoob.github.io/stats.js/build/stats.min.js';document.head.appendChild(script);})()
+
   </script>
+  <%if (process.env.DEPLOY_ENV === 'prod') { %>
+  <script>
+  var setSite = {
+    siteType: 'a20200101some',
+    pageType: "share",
+    pageName: "",
+  }
+  if (typeof(pgvMain) == 'function') pgvMain(); //千万不能忘记
+  </script>
+  <%= htmlWebpackPlugin.tags.bodyTags %>
+  <%}%>
+  <%if (process.env.DEPLOY_ENV !== 'prod') { %>
+  <%= htmlWebpackPlugin.tags.bodyTags %>
+  <%}%>
 </body>
 </html>
 
