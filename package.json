@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "start": "webpack-dev-server --mode=development --hot --history-api-fallback",
+    "start": "webpack serve --mode=development --hot --history-api-fallback",
     "build": "webpack --mode=production --progress",
     "cleanup": "rimraf dist/*",
     "prebuild": "yarn cleanup",
@@ -23,6 +23,7 @@
     "@babel/plugin-transform-react-jsx": "latest",
     "@babel/plugin-transform-runtime": "latest",
     "@babel/preset-env": "latest",
+    "@babel/preset-typescript": "latest",
     "@babel/runtime-corejs3": "latest",
     "autoprefixer": "latest",
     "babel-loader": "latest",

@@ -7,6 +7,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 module.exports = (env, { mode, PROD = mode === 'production' }) => ({
   context: `${__dirname}/src`,
   devtool: 'inline-source-map',
+  cache: false,
+  target: 'web',
   resolve: {
     symlinks: false,
     modules: ['src', 'node_modules', 'res'],

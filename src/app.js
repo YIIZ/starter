@@ -27,3 +27,5 @@ toaster.initContainer()
 window._director = director
 window._loader = loader
 window._store = store
+window._toaster = toaster
+window._modalManager = modalManager
