@@ -48,12 +48,12 @@
   "dependencies": {
     "@babel/runtime": "latest",
     "@teambun/loader": "https://github.com/yiiz/loader.git#master",
+    "@teambun/motion": "https://github.com/yiiz/motion.git#master",
     "eventemitter3": "latest",
     "path-browserify": "latest",
     "pixi-spine": "latest",
     "pixi-suite": "https://github.com/yiiz/pixi-suite.git#master",
     "pixi.js": "latest",
-    "popmotion": "latest",
     "whatwg-fetch": "latest"
   },
   "browserslist": [

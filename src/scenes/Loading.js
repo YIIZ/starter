@@ -1,10 +1,10 @@
 import { Sprite, Text, Point, Texture } from 'pixi.js'
-import { tween, easing } from 'popmotion'
+import { tween, easing } from '@teambun/motion'
 import loader from '@teambun/loader'
 
 import { Scene, Node } from 'pixi-suite/src/containers'
 import { ViewAdapter, Widget } from 'pixi-suite/src/components'
-import { director } from 'pixi-suite/src/managers'
+import { director, modalManager } from 'pixi-suite/src/managers'
 import { fadeOut } from 'pixi-suite/src/transitions'
 
 const { WHITE } = Texture
