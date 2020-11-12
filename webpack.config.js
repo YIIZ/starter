@@ -14,6 +14,7 @@ module.exports = (env, { mode, PROD = mode === 'production' }) => ({
     modules: ['src', 'node_modules', 'res'],
     alias: { res: `${__dirname}/res` },
     fallback: { path: require.resolve('path-browserify') },
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
   },
   entry: {
     app: './app.js',
@@ -27,7 +28,7 @@ module.exports = (env, { mode, PROD = mode === 'production' }) => ({
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(ts|js)$/,
         include: [
           path.resolve(__dirname, 'src'),
           path.resolve(__dirname, 'node_modules/pixi-suite'),
@@ -39,7 +40,7 @@ module.exports = (env, { mode, PROD = mode === 'production' }) => ({
           options: {
             // ignore babelrc in node_modules
             babelrc: false,
-            presets: [['@babel/preset-env', { modules: 'commonjs' }]],
+            presets: [['@babel/preset-env', { modules: 'commonjs' }], '@babel/preset-typescript'],
             plugins: [
               ['@babel/plugin-transform-runtime', { corejs: 3, useESModules: false }],
               '@babel/plugin-syntax-dynamic-import',
