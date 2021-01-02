@@ -2,7 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 const HTMLPlugin = require('html-webpack-plugin')
 
-module.exports = (env, { mode, PROD = (mode ==='production') }) => ({
+module.exports = {
   context: `${__dirname}/src`,
   resolve: {
     symlinks: false,
@@ -15,8 +15,7 @@ module.exports = (env, { mode, PROD = (mode ==='production') }) => ({
   output: {
     path: `${__dirname}/dist`,
     publicPath: `${process.env.PUBLIC || ''}`,
-    // chunkhash not working in dev-server
-    filename: PROD ? '[name]-[chunkhash:8].js' : '[name].js',
+    filename: '[name]-[chunkhash:8].js',
   },
   module: {
     rules: [{
@@ -49,12 +48,12 @@ module.exports = (env, { mode, PROD = (mode ==='production') }) => ({
       template: 'index.html.ejs',
       // https://github.com/kangax/html-minifier#options-quick-reference
       minify: {
-        collapseWhitespace: PROD,
-        removeComments: PROD,
+        collapseWhitespace: true,
+        removeComments: true,
       },
     }),
   ],
-})
+}
 
 // default disable comments for `webpack -p`
 // https://github.com/webpack-contrib/terser-webpack-plugin/blob/master/src/index.js#L46
