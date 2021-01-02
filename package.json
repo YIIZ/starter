@@ -10,32 +10,28 @@
     "package": "yarn buildrelease && pack-it -t ieg -n a20181010xxxx -s ./dist/"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.1",
-    "@babel/plugin-transform-runtime": "^7.12.1",
-    "@babel/preset-env": "^7.12.1",
-    "@babel/preset-react": "^7.12.1",
-    "@babel/runtime": "^7.12.1",
-    "babel-loader": "^8.1.0",
+    "@babel/core": "^7.12.10",
+    "@babel/plugin-transform-runtime": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-react": "^7.12.10",
+    "@babel/runtime": "^7.12.5",
+    "babel-loader": "^8.2.2",
     "babel-plugin-transform-jsxspreadchild": "latest",
-    "core-js": "^3.2.1",
+    "core-js": "^3.8.1",
     "exports-loader": "^1.1.1",
-    "file-loader": "^6.1.1",
+    "file-loader": "^6.2.0",
     "html-webpack-plugin": "^4.5.0",
     "imports-loader": "^1.2.0",
     "raw-loader": "^4.0.2",
     "rimraf": "^3.0.2",
     "url-loader": "^4.1.1",
-    "val-loader": "^2.1.2",
-    "webpack": "^5.1.2",
-    "webpack-cli": "^4.0.0",
-    "webpack-dev-server": "^3.11.0"
+    "val-loader": "^3.0.0",
+    "webpack": "^5.11.1",
+    "webpack-cli": "^4.3.1",
+    "webpack-dev-server": "^3.11.1"
   },
   "dependencies": {
     "lib": "https://github.com/yiiz/lib/archive/master.tar.gz",
-    "whatwg-fetch": "^3.0.0"
-  },
-  "optionalDependencies": {
-    "webpack-bundle-analyzer": "^3.9.0",
-    "webpack-jarvis": "latest"
+    "whatwg-fetch": "^3.5.0"
   }
 }
