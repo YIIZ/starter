@@ -38,8 +38,7 @@
     <canvas></canvas>
   </div>
   <script>
-  // (function(){var script=document.createElement('script');script.onload=function(){var stats=new Stats();document.body.appendChild(stats.dom);requestAnimationFrame(function loop(){stats.update();requestAnimationFrame(loop)});};script.src='//mrdoob.github.io/stats.js/build/stats.min.js';document.head.appendChild(script);})()
-
+  // (function(){var script=document.createElement('script');script.onload=function(){var stats=new Stats();document.body.appendChild(stats.dom);requestAnimationFrame(function loop(){stats.update();requestAnimationFrame(loop)});};script.src='https://demo.yiz.design/lib/stats.min.js';document.head.appendChild(script);})()
   </script>
   <%if (process.env.DEPLOY_ENV === 'prod') { %>
   <script>

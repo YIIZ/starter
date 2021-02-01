@@ -7,8 +7,8 @@
     "prebuild": "yarn cleanup",
     "builddemo": "env $(cat .env/development | grep -v ^# | xargs) yarn build",
     "buildrelease": "env $(cat .env/production | grep -v ^# | xargs) yarn build",
-    "deploy": "yarn build && coscp --cache 0 dist demo:test",
-    "package": "yarn buildrelease && pack-it -t ieg -n a20181010xxxx -s ./dist/"
+    "deploy": "yarn build && coscp --cache res dist demo:test",
+    "package": "yarn buildrelease && pack-it -t ieg -n a20181010xxxx ./dist/"
   },
   "devDependencies": {
     "@babel/core": "latest",
