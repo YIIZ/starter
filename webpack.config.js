@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const HTMLPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const IS_DEV_SERVER = !!process.env.WEBPACK_DEV_SERVER
 
@@ -43,6 +44,14 @@ module.exports = {
     }, {
       test: /\.val$/,
       loader: 'val-loader',
+    }, {
+      test: /\.s?css$/,
+      use: [
+        IS_DEV_SERVER ? 'style-loader' : MiniCssExtractPlugin.loader,
+        { loader: 'css-loader', options: { importLoaders: 1 } },
+        // 'postcss-loader',
+        'sass-loader',
+      ],
     }],
   },
   plugins: [
@@ -56,6 +65,7 @@ module.exports = {
     new HTMLPlugin({
       template: 'index.html.ejs',
     }),
+    new MiniCssExtractPlugin({ filename: '[name]-[chunkhash:8].css' }),
   ],
   experiments: {
     topLevelAwait: true,
