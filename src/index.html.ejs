@@ -12,6 +12,6 @@
   <h1><%= 'Hello World' %></h1>
   <img src="<%= require('res/foo.png') %>" alt="">
   <img src="<%= require('res/bar.png') %>" alt="">
-  <%= require('raw-loader!./foo.svg').default %>
+  <%= require('./foo.svg?raw') %>
 </body>
 </html>

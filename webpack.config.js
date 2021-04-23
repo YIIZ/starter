@@ -27,12 +27,10 @@ module.exports = {
       loader: 'babel-loader',
     }, {
       test: path.resolve(__dirname, 'res'),
-      type: 'javascript/auto', // fix json type
-      loader: 'file-loader',
-      options: {
-        esModule: false,
-        name: '[name]-[hash:8].[ext]',
-      },
+      type: 'asset/resource',
+    }, {
+      resourceQuery: /raw/,
+      type: 'asset/source',
     }, {
       test: /\.val$/,
       loader: 'val-loader',
