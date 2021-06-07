@@ -2,6 +2,8 @@ const path = require('path')
 const webpack = require('webpack')
 const HTMLPlugin = require('html-webpack-plugin')
 
+const IS_DEV_SERVER = !!process.env.WEBPACK_DEV_SERVER
+
 module.exports = {
   context: `${__dirname}/src`,
   resolve: {
@@ -16,17 +18,24 @@ module.exports = {
     path: `${__dirname}/dist`,
     publicPath: `${process.env.PUBLIC || ''}`,
     filename: '[name]-[chunkhash:8].js',
+    assetModuleFilename: '[name]-[hash][ext]',
   },
   module: {
     rules: [{
       test: /\.js$/,
       include: [
         path.resolve(__dirname, 'src'),
+        path.resolve(__dirname, 'node_modules/rui'),
+        path.resolve(__dirname, 'node_modules/lib'),
         path.resolve(__dirname, 'node_modules/whatwg-fetch'),
       ],
       loader: 'babel-loader',
     }, {
-      test: path.resolve(__dirname, 'res'),
+      // test: path.resolve(__dirname, 'res'),
+      test: /\.(png|jpg|gif)$/i,
+      type: 'asset/resource',
+    }, {
+      resourceQuery: /res/,
       type: 'asset/resource',
     }, {
       resourceQuery: /raw/,
@@ -50,6 +59,10 @@ module.exports = {
   ],
   experiments: {
     topLevelAwait: true,
+  },
+  snapshot: {
+    // enable node_modules reloading
+    managedPaths: [],
   },
 }
 

@@ -1,34 +1,33 @@
 {
   "private": true,
   "scripts": {
-    "start": "webpack-dev-server --mode=development --hot --history-api-fallback",
+    "start": "WEBPACK_DEV_SERVER=1 webpack serve --mode=development",
     "build": "webpack --mode=production --progress",
     "cleanup": "rimraf dist/*",
     "prebuild": "yarn cleanup",
-    "builddemo": "PUBLIC=https://demo.yizidesign.com/xxxx/ yarn build",
-    "buildrelease": "PUBLIC=https://game.gtimg.cn/images/yxzj/cp/a20181010xxxx/ yarn build",
-    "package": "yarn buildrelease && pack-it -t ieg -n a20181010xxxx -s ./dist/"
+    "builddemo": "DEBUG=1 yarn build",
+    "buildrelease": "PUBLIC=https://game.gtimg.cn/images/xxx/a20210101xxx/ yarn build",
+    "package": "yarn buildrelease && pack-it -t ieg -n a20210101xxx ./dist/"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.10",
-    "@babel/plugin-transform-runtime": "^7.12.10",
-    "@babel/preset-env": "^7.12.11",
-    "@babel/preset-react": "^7.12.10",
-    "@babel/runtime": "^7.12.5",
+    "@babel/core": "^7.14.3",
+    "@babel/plugin-transform-runtime": "^7.14.3",
+    "@babel/preset-env": "^7.14.4",
+    "@babel/preset-react": "^7.13.13",
+    "@babel/runtime": "^7.14.0",
     "babel-loader": "^8.2.2",
-    "babel-plugin-transform-jsxspreadchild": "latest",
-    "core-js": "^3.8.1",
-    "exports-loader": "^1.1.1",
+    "babel-plugin-transform-jsxspreadchild": "^7.0.0",
+    "core-js": "^3.13.1",
     "html-webpack-plugin": "^5.3.1",
-    "imports-loader": "^1.2.0",
     "rimraf": "^3.0.2",
-    "val-loader": "^3.0.0",
-    "webpack": "^5.11.1",
-    "webpack-cli": "^4.3.1",
-    "webpack-dev-server": "^3.11.1"
+    "val-loader": "^4.0.0",
+    "webpack": "^5.38.1",
+    "webpack-cli": "^4.7.0",
+    "webpack-dev-server": "^4.0.0-beta.3"
   },
   "dependencies": {
-    "lib": "https://github.com/yiiz/lib/archive/master.tar.gz",
+    "lib": "https://github.com/yiiz/lib/archive/2e5d89b.tar.gz",
+    "rui": "https://github.com/yiiz/rui/archive/fc15c3d.tar.gz",
     "whatwg-fetch": "^3.5.0"
   }
 }

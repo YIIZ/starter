@@ -14,7 +14,7 @@ module.exports = {
       useBuiltIns: 'usage',
       corejs: { version: 3, proposals: true },
       shippedProposals: true,
-      debug: true,
+      // debug: true,
     }],
   ],
   plugins: [
