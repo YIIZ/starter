@@ -16,7 +16,7 @@ module.exports = {
   },
   output: {
     path: `${__dirname}/dist`,
-    publicPath: `${process.env.PUBLIC || ''}`,
+    publicPath: `${process.env.WEBPACK_PUBLIC || ''}`,
     filename: '[name]-[chunkhash:8].js',
     assetModuleFilename: '[name]-[hash][ext]',
   },
