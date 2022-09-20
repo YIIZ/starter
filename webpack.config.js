@@ -5,7 +5,6 @@ const HTMLPlugin = require('html-webpack-plugin')
 module.exports = {
   context: `${__dirname}/src`,
   resolve: {
-    symlinks: false,
     modules: ['src', 'node_modules'],
     alias: { res: `${__dirname}/res` },
   },
@@ -24,9 +23,9 @@ module.exports = {
       test: /\.js$/,
       include: [
         path.resolve(__dirname, 'src'),
-        path.resolve(__dirname, 'node_modules/rui'),
-        path.resolve(__dirname, 'node_modules/lib'),
-        path.resolve(__dirname, 'node_modules/whatwg-fetch'),
+        path.dirname(require.resolve('rui/package.json')),
+        path.dirname(require.resolve('lib/package.json')),
+        path.dirname(require.resolve('whatwg-fetch/package.json')),
       ],
       loader: 'babel-loader',
     }, {
@@ -45,7 +44,6 @@ module.exports = {
     }],
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
       'process.env': JSON.stringify(process.env),
     }),
