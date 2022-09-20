@@ -2,8 +2,6 @@ const path = require('path')
 const webpack = require('webpack')
 const HTMLPlugin = require('html-webpack-plugin')
 
-const IS_DEV_SERVER = !!process.env.WEBPACK_DEV_SERVER
-
 module.exports = {
   context: `${__dirname}/src`,
   resolve: {
@@ -15,6 +13,7 @@ module.exports = {
     app: './app.js',
   },
   output: {
+    clean: true,
     path: `${__dirname}/dist`,
     publicPath: `${process.env.WEBPACK_PUBLIC || ''}`,
     filename: '[name]-[chunkhash:8].js',
