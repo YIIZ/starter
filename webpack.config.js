@@ -33,14 +33,21 @@ module.exports = {
       test: /\.(png|jpg|gif)$/i,
       type: 'asset/resource',
     }, {
-      resourceQuery: /res/,
-      type: 'asset/resource',
-    }, {
       resourceQuery: /raw/,
       type: 'asset/source',
     }, {
       test: /\.val$/,
       loader: 'val-loader',
+    }, {
+      resourceQuery: /emit/,
+      type: 'asset/source',
+    }, {
+      resourceQuery: /emit=([\w\.]+)/,
+      generator: {
+        filename: ({ filename }) => {
+          return filename.split('?')[1].match(/emit=([\w\.]+)/)?.[1]
+        },
+      },
     }],
   },
   plugins: [
